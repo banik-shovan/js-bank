@@ -14,12 +14,65 @@
         <h1 class="text-center">Welcome to my Bank</h1>
         <div class="submit-area">
             <h3>Login</h3>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" placeholder="Email">
             <br>
-            <input type="password" name="" id="" class="form-control">
+            <input type="password" name="" id="" class="form-control" placeholder="passwoard please">
             <br>
-            <button class="btn btn-success">Enter</button>
+            <button id="login" class="btn btn-success">Enter</button>
         </div>
     </div>
+    <div id="transaction-area">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h2>Deposite</h2>
+                    <h3>$ 00</h3>
+                </div>
+                
+
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h2>Withdraw</h2>
+                    <h3>$00</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h2>Balance</h2>
+                    <h3>$150</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input type="text" class="form-control" placeholder="Deposit Amount">
+                    <br>
+                    <button class="btn btn-success">Deposit</button>
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input type="text" class="form-control" placeholder="Withdraw Amount">
+                    <br>
+                    <button class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const loginBtn=document.getElementById("login")
+        loginBtn.addEventListener("click",function(){
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display="none";
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display="block";
+
+        })
+    </script>
 </body>
 </html>
