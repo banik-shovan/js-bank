@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <div class="deposit status">
                     <h2>Deposite</h2>
-                    <h3>$ 00</h3>
+                    <h3>$ <span id="currentAmount">00</span></h3>
                 </div>
                 
 
@@ -34,45 +34,84 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h2>Withdraw</h2>
-                    <h3>$00</h3>
+                    <h3>$ <span id="withdrawBalanceAmount">00</span></h3>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="balance status">
                     <h2>Balance</h2>
-                    <h3>$150</h3>
+                    <h3>$ <span id="balanceAmount">00</span></h3>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="submit-area">
+                <div class="submit-area transaction-area">
                     <h4>Deposit</h4>
-                    <input type="text" class="form-control" placeholder="Deposit Amount">
+                    <input id="depositAmount" type="text" class="form-control" placeholder="Deposit Amount">
                     <br>
-                    <button class="btn btn-success">Deposit</button>
+                    <button class="btn btn-success" id="deposit">Deposit</button>
                 </div>
                 
             </div>
             <div class="col-md-6">
-                <div class="submit-area">
+                <div class="submit-area transaction-area">
                     <h4>Withdraw</h4>
-                    <input type="text" class="form-control" placeholder="Withdraw Amount">
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="Withdraw Amount">
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button class="btn btn-success" id="withdraw">Withdraw</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
+        // login button event handler
         const loginBtn=document.getElementById("login")
         loginBtn.addEventListener("click",function(){
             const loginArea = document.getElementById("login-area");
             loginArea.style.display="none";
             const transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display="block";
+            document.body.style.backgroundColor="yellow"
 
         })
+        // deposit event handler
+        const deposit=document.getElementById("deposit");
+        deposit.addEventListener("click",function(){
+            const depositAmount=document.getElementById("depositAmount").value;
+            const enterDepositAmount=parseFloat(depositAmount);
+        
+            updateSpanAmount("currentAmount",enterDepositAmount);
+            updateSpanAmount("balanceAmount",enterDepositAmount);
+            
+            document.getElementById("depositAmount").value=null;
+
+
+            
+        })
+
+       
+        //withdraw event handler
+        const withdraw=document.getElementById("withdraw");
+        withdraw.addEventListener('click',function(){
+            const withdrawAmount=document.getElementById("withdrawAmount").value;
+            const enterWithdrawAmount=parseFloat(withdrawAmount);
+            
+
+            updateSpanAmount("withdrawBalanceAmount",enterWithdrawAmount);
+            updateSpanAmount("balanceAmount",-1*enterWithdrawAmount);
+            
+            document.getElementById("withdrawAmount").value=null;
+
+        })
+        
+        function updateSpanAmount(id,enterDepositAmount){
+            const balanceAmount=document.getElementById(id).innerText;
+            const currentBalanceAmount =parseFloat(balanceAmount);
+            const newDepositBalanceAmount =currentBalanceAmount+enterDepositAmount;
+            document.getElementById(id).innerText=newDepositBalanceAmount;
+        }
+
     </script>
 </body>
 </html>
